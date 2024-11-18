@@ -3,26 +3,23 @@
 
   </h1>
   <br>
-  <button v-on:click="mensajeConsola">Pulsame</button>
-  <button v-on:click="mensajeConsola">Pulsame otro</button>
-  </template>
+  <p :class="contador < 0 ? 'rojo' : 'verde' ">Contador: {{ contador }}</p>
+  <button @click="incrementar">+</button>
+  <button @click="decrementar">-</button>
+  <button @click="resetear">Resetear</button>
+</template>
 
-  <form @submit.prevent="submitPulsado">
-    <button type="submit">Enviar</button>
-  </form>
-
-  <script setup>
-const mensajeConsola=()=>{
-  alert("Hola mundo");
-}
-
-function teclaPulsada(event){
-  console.log(event.key);
-}
-
-const submitPulsado = () => {
-  alert("Has pulsado enter");
-}
-
+<script setup>
+  import { ref } from 'vue';
+  const contador = ref(0);
+  const incrementar = () => {
+    contador.value++;
+  }
+  const decrementar = () => {
+    contador.value--;
+  }
+  const resetear = () => {
+    contador.value = 0;
+  }
 </script>
 
